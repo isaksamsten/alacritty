@@ -9,6 +9,10 @@
        src="extra/promo/alacritty-readme.png">
 </p>
 
+## Personal fork
+
+Hacking window-button show on hover for macOS. I don't know Rust, but I had to patch both alacritty and winit to make it happen.
+
 ## About
 
 Alacritty is a modern terminal emulator that comes with sensible defaults, but

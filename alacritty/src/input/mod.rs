@@ -425,6 +425,16 @@ impl<T: EventListener, A: ActionContext<T>> Processor<T, A> {
         let size_info = self.ctx.size_info();
 
         let (x, y) = position.into();
+        #[cfg(target_os = "macos")]
+        if !self.ctx.window().is_fullscreen() {
+            if y < 50 {
+                self.ctx.window().set_hidden_buttons(false);
+            } else {
+                if !self.ctx.window().is_buttons_hidden() {
+                    self.ctx.window().set_hidden_buttons(true);
+                }
+            }
+        }
 
         let lmb_pressed = self.ctx.mouse().left_button_state == ElementState::Pressed;
         let rmb_pressed = self.ctx.mouse().right_button_state == ElementState::Pressed;

@@ -345,6 +345,18 @@ impl Window {
         self.window.set_transparent(transparent);
     }
 
+    pub fn set_hidden_buttons(&self, state : bool) {
+        self.window.set_hidden_buttons(state)
+    }
+
+    pub fn is_fullscreen(&self) -> bool {
+        return self.window.fullscreen().is_some();
+    }
+
+    pub fn is_buttons_hidden(&self) -> bool {
+        return self.window.is_buttons_hidden();
+    }
+
     pub fn set_blur(&self, blur: bool) {
         self.window.set_blur(blur);
     }
@@ -394,8 +406,10 @@ impl Window {
 
     pub fn set_fullscreen(&self, fullscreen: bool) {
         if fullscreen {
+            self.window.set_hidden_buttons(false);
             self.window.set_fullscreen(Some(Fullscreen::Borderless(None)));
         } else {
+            self.window.set_hidden_buttons(true);
             self.window.set_fullscreen(None);
         }
     }
